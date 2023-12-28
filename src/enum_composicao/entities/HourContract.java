@@ -2,12 +2,14 @@ package enum_composicao.entities;
 
 import java.time.LocalDate;
 
+import enum_composicao.enums.WorkerLevel;
+
 public class HourContract {
 	
 	LocalDate date;
 	Double valuePerHour;
 	Integer hours;
-	
+
 	public HourContract() {
 		
 	}
