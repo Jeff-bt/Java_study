@@ -3,16 +3,18 @@ package enum_composicao.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import enum_composicao.enums.WorkerLevel;
+
 public class Worker {
 	
 	String name;
-	String level;
+	WorkerLevel level;
 	Double baseSalary;
 	
 	Department department;
 	List<HourContract> contracts = new ArrayList<>();
 	
-	public Worker(String name, String level, Double baseSalary, Department department) {
+	public Worker(String name, WorkerLevel level, Double baseSalary, Department department) {
 		super();
 		this.name = name;
 		this.level = level;
@@ -28,11 +30,11 @@ public class Worker {
 		this.name = name;
 	}
 
-	public String getLevel() {
+	public WorkerLevel getLevel() {
 		return level;
 	}
 
-	public void setLevel(String level) {
+	public void setLevel(WorkerLevel level) {
 		this.level = level;
 	}
 
@@ -61,9 +63,11 @@ public class Worker {
 	}
 	
 	public Double income(Integer year, Integer month) {
-		Double sum = 0.0;
+		Double sum = baseSalary;
 		for(HourContract contract : contracts) {
-			sum += contract.totalValue();
+			if(year == contract.getDate().getYear() && month == contract.getDate().getMonthValue()) {
+				sum += contract.totalValue();				
+			}
 		}
 		
 		return sum;
@@ -72,13 +76,12 @@ public class Worker {
 	@Override
 	public String toString() {
 		return "name: " + name 
+				+ String.format("%n")
 				+ "level: " + level
 				+ String.format("%n")
-				+ "baseSalary: " + baseSalary
-				+ String.format("%n")
 				+ "department: " + department.getName()
-				+ String.format("%n")
-				+ "contracts: " + contracts;
+				+ String.format("%n");
+		
 	}
 	
 	

@@ -2,8 +2,6 @@ package enum_composicao.entities;
 
 import java.time.LocalDate;
 
-import enum_composicao.enums.WorkerLevel;
-
 public class HourContract {
 	
 	LocalDate date;
@@ -52,8 +50,6 @@ public class HourContract {
 	public Double totalValue() {
 		return hours * valuePerHour;
 	}
-
-
 
 	@Override
 	public String toString() {
